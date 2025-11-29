@@ -48,12 +48,26 @@ protobuf {
 sourceSets {
     main {
         java {
-            srcDirs 'build/generated/source/proto/main/grpc'
-            srcDirs 'build/generated/source/proto/main/java'
+            srcDir 'build/generated/source/proto/main/grpc'
+            srcDir 'build/generated/source/proto/main/java'
         }
     }
 }
 
 application {
     mainClass = 'com.example.Main'
+}
+
+task runServer(type: JavaExec) {
+    dependsOn 'build'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.Main'
+    args = ['server']
+}
+
+task runClient(type: JavaExec) {
+    dependsOn 'build'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.Main'
+    args = ['client']
 }
