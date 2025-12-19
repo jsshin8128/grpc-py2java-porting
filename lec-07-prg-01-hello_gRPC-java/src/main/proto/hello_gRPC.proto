@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package hellogrpc;
+
+option java_outer_classname = "HelloGrpcProto";
+option java_multiple_files = false;
+
+service MyService {
+    rpc MyFunction(MyNumber) returns (MyNumber) {}
+}
+
+message MyNumber {
+    int32 value = 1;
+}
